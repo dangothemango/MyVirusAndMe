@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+
+<form action="." method="POST" style="margin-top: 15px; margin-left: 15px">
+	user: <input type="text" name="username"><br/>
+	pass: <input type="password" name="password"><br/>
+	<input type="submit" name="Submit"><br/>
+</form>
+
+{% if error %}
+<p type= "error">{{error}}</p>
+{% endif %}
+
+{% endblock %}
