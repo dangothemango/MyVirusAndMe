@@ -5,6 +5,32 @@
 <form action="./key" method="POST" style="margin-top: 15px; margin-left: 15px">
 	key: <input type="text" name="key"><br/>
 	<input type="submit" name="Submit"><br/>
+	
+	<br/><br/>
+	&nbsp;Leaderboards:
+
+<div class="table">
+<table class="grid" cellspacing="0">
+<tbody>
+<tr>
+  <td colspan="4">Level</td>
+  <td colspan="4">Players Completed</td>
+  <td colspan="4">First Completed By</td>  
+  
+</tr>
+
+	{% for item in leaderboard %}
+	<tr>
+		<td colspan="4">&nbsp;{{ item.0 }}</td>
+		<td colspan="4">&nbsp;{{ item.1 }}</td>
+		<td colspan="4">&nbsp;{{ item.2 }}</td>  	
+	</tr>       
+    {% endfor %}
+
+</tbody></table>
+</div>
+	
+	
 </form>
 
 {% if error %}
