@@ -60,6 +60,7 @@ app.json_encoder = CustomJSONEncoder
 
 vars = {}
 specialCharacters ="~#%&*{}\\:<>?/+|\""
+leaderboard = [("1", "6", "Dan"), ("5", "300", "Molly"), ("6", "200", "Harrison")]
 
 with open('./data/keys.json') as f:
 	keysDict = json.load(f)
@@ -84,7 +85,7 @@ def loginPost():
 
 @app.route('/key')
 def key():
-	return render_template('key.html',vars = vars)
+	return render_template('key.html',leaderboard = leaderboard)
 
 @app.route('/key', methods = ['POST'])
 def keyPost():
