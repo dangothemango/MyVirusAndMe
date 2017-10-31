@@ -44,6 +44,32 @@ class User(object):
 	def checkPassword(self,password):
 		return password==self.password
 
+leaderboardFile= "./data/leaderboard/leaderboard.json"
+
+class Leaderboard(object):
+
+	def __init__(self):
+		super(Leaderboard, self).__init__()
+		self.levels = []
+		self.load()
+
+	def load(self):
+		with open(leaderboardFile) as f:
+			leaderboard = json.load(f)
+		self.levels = leaderboard['levels']
+
+	def save(self):
+		leaderboard={'levels':self.levels}
+		with open(leaderboardFile,'w') as f:
+			json.dump(leaderboard,f)
+
+	def onSuccess(self, level, levelName,uname):
+		if (level == len(self.levels)):
+			self.levels.append([levelName,1,uname])
+		else:
+			self.levels[level][1]+=1
+		self.save()
+
 
 app = Flask(__name__)
 app.secret_key = 'A0Zr98j/3yX R8XHH!jmN]LWX/,?RT'
@@ -60,10 +86,11 @@ app.json_encoder = CustomJSONEncoder
 
 vars = {}
 specialCharacters ="~#%&*{}\\:<>?/+|\""
-leaderboard = [("1", "6", "Dan"), ("5", "300", "Molly"), ("6", "200", "Harrison")]
 
 with open('./data/keys.json') as f:
 	keysDict = json.load(f)
+
+leaderboard = Leaderboard()
 
 @app.route('/')
 def login():
@@ -85,16 +112,31 @@ def loginPost():
 
 @app.route('/key')
 def key():
-	return render_template('key.html',leaderboard = leaderboard)
+	return render_template('key.html',leaderboard = leaderboard.levels)
 
 @app.route('/key', methods = ['POST'])
 def keyPost():
 	if request.form['key'].lower() in keysDict:
 		u = User(session['user'],json=True)
-		u.score +=1
+		k = keysDict[request.form['key'].lower()]
+
+		if (u.score<k['level']):
+			return render_template('key.html',leaderboard = leaderboard.levels)
+
+		if (u.score > k['level']):
+			return render_template('key.html',leaderboard = leaderboard.levels,response=k['response'])
+
+		u.score+=1
 		u.save()
 		session['user']=u
-		return keysDict[request.form['key'].lower()]
 
-	else:
-		return "You Suck"
+		##using str(k['level']) as a temp place holder for the level name till we think of something better
+		leaderboard.onSuccess(k['level'], str(k['level']), u.name)	
+
+		return render_template('key.html',leaderboard = leaderboard.levels,response=k['response'])
+
+	return render_template('key.html',leaderboard = leaderboard.levels)
+
+@app.route('/demo')
+def demo():
+	return app.send_static_file('keyDemo.txt')

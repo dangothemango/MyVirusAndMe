@@ -5,6 +5,10 @@
 <form action="./key" method="POST" style="margin-top: 15px; margin-left: 15px">
 	key: <input type="text" name="key"><br/>
 	<input type="submit" name="Submit"><br/>
+
+	{% if response %}
+	<p>{{response}}</p>
+	{% endif %}
 	
 	<br/><br/>
 	&nbsp;Leaderboards:
