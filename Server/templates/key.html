@@ -2,9 +2,11 @@
 {% block title %}Enter Code{% endblock %}
 {% block content %}
 
-<form action="./key" method="POST" style="margin-top: 15px; margin-left: 15px">
+<form action="{{ url_for('key') }}" method="POST" style="margin-top: 15px; margin-left: 15px">
 	key: <input type="text" name="key"><br/>
 	<input type="submit" name="Submit"><br/>
+	
+</form>
 
 	{% if response %}
 	<p>{{response}}</p>
@@ -33,12 +35,11 @@
 
 </tbody></table>
 </div>
-	
-	
+
+<p>Open this in a new tab</p>
+<form action="{{ url_for('demo') }}" method="GET" >
+	<input type="submit" value="Demo"><br/>
 </form>
 
-{% if error %}
-<p type= "error">{{error}}</p>
-{% endif %}
 
 {% endblock %}

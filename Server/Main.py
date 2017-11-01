@@ -1,7 +1,8 @@
 from flask import Flask, render_template, url_for, request, redirect, session
 from flask.json import JSONEncoder,JSONDecoder
 
-import json
+import json, time
+import os.path
 
 #Ideally this will be moved into another file but i dont feel like figuring that out now
 userDatabase= "./data/users/"
@@ -44,6 +45,27 @@ class User(object):
 	def checkPassword(self,password):
 		return password==self.password
 
+	@staticmethod
+	def validateName(uname):
+		for char in uname:
+			if char in specialCharacters:
+				return False
+		return True
+
+	@staticmethod
+	def exists(uname):
+		return os.path.isfile(userDatabase+uname+'.json')
+
+	@staticmethod
+	def newUser(name, password):
+		newUser={}
+		newUser['name']=name
+		newUser['password']=password
+		newUser['score']=0
+		user = User(json.dumps(newUser),True)
+		user.save()
+		return user
+
 leaderboardFile= "./data/leaderboard/leaderboard.json"
 
 class Leaderboard(object):
@@ -65,7 +87,7 @@ class Leaderboard(object):
 
 	def onSuccess(self, level, levelName,uname):
 		if (level == len(self.levels)):
-			self.levels.append([levelName,1,uname])
+			self.levels.append([levelName,1,uname,time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
 		else:
 			self.levels[level][1]+=1
 		self.save()
@@ -94,37 +116,59 @@ leaderboard = Leaderboard()
 
 @app.route('/')
 def login():
-	return render_template('login.html',vars =vars)
+	return render_template('login.html')
 
 @app.route('/', methods = ['POST'])
 def loginPost():
 	user = request.form['username']
-	for char in user:
-		if char in specialCharacters:
-			return render_template('login.html',error = "username may not contain "+specialCharacters)
+	if not User.validateName(user):
+		return render_template('login.html',error = "username may not contain "+specialCharacters)
+
+	if not User.exists(user):
+		return render_template('login.html',error = "Invalid username or password")
 	
 	user = User(user)
 	if (request.form['password'] == user.password):
 		session['user'] = user
 		return redirect(url_for('key'))
 	else:
-		return render_template('login.html',error = user.password+request.form['password'])#"Invalid username or password")
+		return render_template('login.html',error ="Invalid username or password")
+
+@app.route('/signup')
+def signup():
+	return render_template('signup.html')
+
+@app.route('/signup', methods = ['POST'])
+def signupPost():
+	if (len(request.form['username']) == 0 or len(request.form['password']) ==0):
+		return render_template('signup.html', error="Username and password must be specified")
+	if not User.validateName(request.form['username']):
+		return render_template('signup.html',error = "username may not contain "+specialCharacters)
+	if User.exists(request.form['username']):
+		return render_template('signup.html',error = "username is already taken")
+	session['user']=User.newUser(request.form['username'],request.form['password'])
+	return redirect(url_for('key'))
+	
 
 @app.route('/key')
 def key():
+	if not ('user' in session):
+		return redirect(url_for('login'))
 	return render_template('key.html',leaderboard = leaderboard.levels)
 
 @app.route('/key', methods = ['POST'])
 def keyPost():
+	if not ('user' in session):
+		return redirect(url_for('login'))
 	if request.form['key'].lower() in keysDict:
 		u = User(session['user'],json=True)
 		k = keysDict[request.form['key'].lower()]
 
 		if (u.score<k['level']):
-			return render_template('key.html',leaderboard = leaderboard.levels)
+			return render_template('key.html',leaderboard = list(reversed(leaderboard.levels)))
 
 		if (u.score > k['level']):
-			return render_template('key.html',leaderboard = leaderboard.levels,response=k['response'])
+			return render_template('key.html',leaderboard = list(reversed(leaderboard.levels)),response=k['response'])
 
 		u.score+=1
 		u.save()
@@ -133,9 +177,9 @@ def keyPost():
 		##using str(k['level']) as a temp place holder for the level name till we think of something better
 		leaderboard.onSuccess(k['level'], str(k['level']), u.name)	
 
-		return render_template('key.html',leaderboard = leaderboard.levels,response=k['response'])
+		return render_template('key.html',leaderboard = list(reversed(leaderboard.levels)),response=k['response'])
 
-	return render_template('key.html',leaderboard = leaderboard.levels)
+	return render_template('key.html',leaderboard = list(reversed(leaderboard.levels)))
 
 @app.route('/demo')
 def demo():
