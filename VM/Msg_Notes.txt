@@ -1,0 +1,7 @@
+Command: msg "Administrator Hello
+
+msg: Runs msg.exe (built-in)
+"Administrator": Defines the username the message is sent to
+Hello: The message to be displayed
+
+Note: Popups will automatically disappear after 60 seconds, but this can be changed
