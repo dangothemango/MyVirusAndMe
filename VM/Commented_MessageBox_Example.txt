@@ -1,0 +1,33 @@
+'Function Parameters: MsgBox( virus message, settings, message box title)'
+'result = what the user picked'
+
+result = MsgBox("Alerting you!", vbAbortRetryIgnore+vbExclamation+vbDefaultButton2, "File Save Error")
+
+Dim message
+
+'Change response based on what the player clicked'
+Select Case result
+Case vbAbort
+	message = "You aborted me..."
+Case vbRetry
+	message = "Try again yourself then."
+case vbIgnore
+	message = "Don't Ignore me."
+
+End Select
+
+
+'Display the second message'
+result2 = MsgBox(message, vbAbortRetryIgnore+vbExclamation+vbDefaultButton2, "Alerting you!")
+
+Select Case result2
+Case vbAbort
+	message2 = "Abort v2"
+Case vbRetry
+	message2 = "Retry v2"
+Case vbIgnore
+	message2 = "Ignore v2."
+
+End Select
+
+MsgBox message2, vbInformation
