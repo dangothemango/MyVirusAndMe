@@ -1,0 +1,12 @@
+'Launches the specific level script'
+
+
+Dim objShell
+Set objShell = WScript.CreateObject( "WScript.Shell" )
+objShell.Run("""C:\Levels\Level_1.vbs""")
+Set objShell = Nothing
+WScript.Sleep 250
+
+'TODO: Needs to sleep if cannot find level to launch'
+'TODO: Delete script after playing messages'
+'TODO: Look for one level at a time (not just level_1)'
