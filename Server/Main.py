@@ -120,34 +120,30 @@ def login():
 
 @app.route('/', methods = ['POST'])
 def loginPost():
-	user = request.form['username']
-	if not User.validateName(user):
-		return render_template('login.html',error = "username may not contain "+specialCharacters)
-
-	if not User.exists(user):
-		return render_template('login.html',error = "Invalid username or password")
-	
-	user = User(user)
-	if (request.form['password'] == user.password):
-		session['user'] = user
+	if 'signup' in request.form:
+		if (len(request.form['username']) == 0 or len(request.form['password']) ==0):
+			return render_template('login.html', error="Username and password must be specified")
+		if not User.validateName(request.form['username']):
+			return render_template('login.html',error = "username may not contain "+specialCharacters)
+		if User.exists(request.form['username']):
+			return render_template('login.html',error = "Username is already taken")
+		session['user']=User.newUser(request.form['username'],request.form['password'])
 		return redirect(url_for('key'))
-	else:
-		return render_template('login.html',error ="Invalid username or password")
+		
+	if 'login' in request.form:
+		user = request.form['username']
+		if not User.validateName(user):
+			return render_template('login.html',error = "username may not contain "+specialCharacters)
 
-@app.route('/signup')
-def signup():
-	return render_template('signup.html')
-
-@app.route('/signup', methods = ['POST'])
-def signupPost():
-	if (len(request.form['username']) == 0 or len(request.form['password']) ==0):
-		return render_template('signup.html', error="Username and password must be specified")
-	if not User.validateName(request.form['username']):
-		return render_template('signup.html',error = "username may not contain "+specialCharacters)
-	if User.exists(request.form['username']):
-		return render_template('signup.html',error = "username is already taken")
-	session['user']=User.newUser(request.form['username'],request.form['password'])
-	return redirect(url_for('key'))
+		if not User.exists(user):
+			return render_template('login.html',error = "Invalid username or password")
+		
+		user = User(user)
+		if (request.form['password'] == user.password):
+			session['user'] = user
+			return redirect(url_for('key'))
+		else:
+			return render_template('login.html',error ="Invalid username or password")
 	
 
 @app.route('/key')
