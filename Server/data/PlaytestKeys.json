@@ -1,0 +1,13 @@
+{
+	"andhereiswhereitallbegins":{"response":"This is only the beginning", "level":0},
+	"thereisanotheroption":{"response":"I couldn't tell you", "level":1},
+	"ifiaskedyouwhyyourehere":{"response":"BUIOEJDJUPVIFSFMEOPUFSFJTJOTUFMXMBOPIMZZPVFHFUUIFTSSFJUXPQPSTFUJPGSPOBMMNIFSFCFHJOT", "level":2},
+	"itonlygetsworsefromhere":{"response":"congrats", "level":3},
+	"normalgamesaresoboring":{"response":"no response", "level": -1, "redirect":"telgraph"},
+	"soyoufoundme":{"response": "Luhoyeuiseys ,ku e a ea\"delI lu nw'y\"ntjavo", "level":-2},
+	"unusual":{ "response" : "no response", "level":-3, "redirect":"codenames"},
+	"thingsarentastheyseem" : { "response" : "no response", "level":-4, "redirect":"telegraph"},
+	"wedonthavetobeenemies" : { "response" : "no response", "level":-5, "redirect":"love"},
+	"illalwaysbehereforyou":{ "response" : "*insert easter egg acheivement here*", "level":-6}
+
+}

@@ -14,6 +14,7 @@ class User(object):
 		self.name = arg
 		self.password = ""
 		self.score = 0
+		self.eggScore = 0;
 		if (json):
 			self.fromJson(arg)
 		else:
@@ -24,6 +25,7 @@ class User(object):
 		self.name=userDict['name']
 		self.password=userDict['password']
 		self.score=userDict['score']
+		self.eggScore=userDict['eggScore']
 
 	def load(self,uname):
 		with open(userDatabase+uname+'.json') as userF:
@@ -32,13 +34,14 @@ class User(object):
 			exit(-1)
 		self.password=userDict['password']
 		self.score=userDict['score']
+		self.eggScore=userDict['eggScore']
 
 	def toJson(self):
-		userDict={'name':self.name, 'password':self.password,'score':self.score}
+		userDict={'name':self.name, 'password':self.password,'score':self.score, 'eggScore':self.eggScore}
 		return json.dumps(userDict)
 
 	def save(self):
-		userDict={'name':self.name, 'password':self.password,'score':self.score}
+		userDict={'name':self.name, 'password':self.password,'score':self.score, 'eggScore':self.eggScore}
 		with open(userDatabase+self.name+'.json','w') as userF:
 			json.dump(userDict,userF)
 		
@@ -62,6 +65,7 @@ class User(object):
 		newUser['name']=name
 		newUser['password']=password
 		newUser['score']=0
+		newUser['eggScore']=0
 		user = User(json.dumps(newUser),True)
 		user.save()
 		return user
@@ -73,24 +77,36 @@ class Leaderboard(object):
 	def __init__(self):
 		super(Leaderboard, self).__init__()
 		self.levels = []
+		self.eggLevels = []
 		self.load()
 
 	def load(self):
 		with open(leaderboardFile) as f:
 			leaderboard = json.load(f)
 		self.levels = leaderboard['levels']
+		self.eggLevels = leaderboard['eggLevels']
 
 	def save(self):
-		leaderboard={'levels':self.levels}
+		leaderboard={'levels':self.levels, 'eggLevels':self.eggLevels}
 		with open(leaderboardFile,'w') as f:
 			json.dump(leaderboard,f)
 
 	def onSuccess(self, level, levelName,uname):
-		if (level == len(self.levels)):
-			self.levels.append([levelName,1,uname,time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
+		if (level>=0):
+			if (level == len(self.levels)):
+				self.levels.append([levelName,1,uname,time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
+			else:
+				self.levels[level][1]+=1
 		else:
-			self.levels[level][1]+=1
+			level = level*-1
+			if (level > len(self.eggLevels)):
+				self.eggLevels.append([levelName,1,uname,time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
+			else:
+				self.eggLevels[level-1][1]+=1
 		self.save()
+
+	def getLeaderboard(self):
+		return list(reversed(self.levels))+self.eggLevels
 
 
 app = Flask(__name__)
@@ -109,7 +125,7 @@ app.json_encoder = CustomJSONEncoder
 vars = {}
 specialCharacters ="~#%&*{}\\:<>?/+|\""
 
-with open('./data/keys.json') as f:
+with open('./data/PlaytestKeys.json') as f:
 	keysDict = json.load(f)
 
 leaderboard = Leaderboard()
@@ -150,7 +166,7 @@ def loginPost():
 def key():
 	if not ('user' in session):
 		return redirect(url_for('login'))
-	return render_template('key.html',leaderboard = leaderboard.levels)
+	return render_template('key.html',leaderboard = leaderboard.getLeaderboard())
 
 @app.route('/key', methods = ['POST'])
 def keyPost():
@@ -160,11 +176,22 @@ def keyPost():
 		u = User(session['user'],json=True)
 		k = keysDict[request.form['key'].lower()]
 
-		if (u.score<k['level']):
-			return render_template('key.html',leaderboard = list(reversed(leaderboard.levels)))
+		if(k["level"]<0):
+			if u.eggScore > k["level"]+1:
+				return render_template('key.html',leaderboard = leaderboard.getLeaderboard())
+			if u.eggScore > k["level"]:
+				u.eggScore-=1
+				u.save()
+				session['user']=u
 
-		if (u.score > k['level']):
-			return render_template('key.html',leaderboard = list(reversed(leaderboard.levels)),response=k['response'])
+				leaderboard.onSuccess(k['level'], str(k['level']), u.name)	
+			return followLevel(leaderboard,k)
+
+		if (u.score<k['level']):
+			return render_template('key.html',leaderboard = leaderboard.getLeaderboard())
+
+		if (u.score>k['level']):
+			return followLevel(leaderboard,k)
 
 		u.score+=1
 		u.save()
@@ -173,13 +200,50 @@ def keyPost():
 		##using str(k['level']) as a temp place holder for the level name till we think of something better
 		leaderboard.onSuccess(k['level'], str(k['level']), u.name)	
 
-		return render_template('key.html',leaderboard = list(reversed(leaderboard.levels)),response=k['response'])
+		return followLevel(leaderboard,k)
 
-	return render_template('key.html',leaderboard = list(reversed(leaderboard.levels)))
+	return render_template('key.html',leaderboard = leaderboard.getLeaderboard())
 
-@app.route('/demo')
-def demo():
-	return app.send_static_file('keyDemo.txt')
+def followLevel(leaderboard,key):
+	if ("redirect" in key and key["redirect"] != None):
+		return redirect(url_for(key["redirect"]))
+	return render_template('key.html',leaderboard = leaderboard.getLeaderboard(),response=key['response'])
+
+@app.route('/telgraph')
+def telgraph():
+	if not ('user' in session):
+		return redirect(url_for('login'))
+	u = User(session['user'],json=True)
+	if (u.eggScore > -1):
+		return redirect(url_for('key'))
+	return render_template('telegraph.html')
+
+@app.route('/codenames')
+def codenames():
+	if not ('user' in session):
+		return redirect(url_for('login'))
+	u = User(session['user'],json=True)
+	if (u.eggScore > -3):
+		return redirect(url_for('key'))
+	return render_template('codenames.html')
+
+@app.route('/love')
+def love():
+	if not ('user' in session):
+		return redirect(url_for('login'))
+	u = User(session['user'],json=True)
+	if (u.eggScore > -5):
+		return redirect(url_for('key'))
+	return render_template('love.html')
+
+@app.route('/telegraph')
+def telegraph():
+	if not ('user' in session):
+		return redirect(url_for('login'))
+	u = User(session['user'],json=True)
+	if (u.eggScore > -4):
+		return redirect(url_for('key'))
+	return render_template('telegraph2.html')
 
 @app.route('/robots.txt')
 def robots():

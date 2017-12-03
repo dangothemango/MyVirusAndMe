@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <title>Telegraph</title>
+  </head>
+  <body id="body" style="background-color: #FFF" onload="sendMessageDriver()">
+
+<script type="text/javascript">
+var message = [0,0,0,0,0,0,0,1,0,1,1,1,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,1,1,1,0,1,0,1,0,0,0,1,1,1,0,1,1,1,0,1,1,1,0,0,0,1,1,1,0,1,0,0,0,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,1,1,0,0,0,1,0,1,0,1,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,0,1,1,1,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,1,0,0,0,1,0,0,0,1,1,1,0,1,1,1,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,1,0,1];
+
+var body;
+
+function sendMessageDriver(){
+    sendMessage();
+}
+
+async function sendMessage(loop){
+    var i =0;
+    while (true){
+        var mult = message[i%message.length]
+        if (mult){
+            document.body.style.backgroundColor = "white";
+        } else {
+            document.body.style.backgroundColor = "black";
+        }
+        await sleep(250);
+        i++;
+    }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+</script>
+
+  </body>
+</html>
