@@ -10,7 +10,7 @@ def main():
 
     # Hash given password
     hashed_input = hashlib.sha512(pass_input).hexdigest()
-    # write_hash() -> For collecting hashes of new levels
+    #write_hash(hashed_input) #For collecting hashes of new levels
 
     # Display hashed password
     print hashed_input
@@ -18,6 +18,7 @@ def main():
     # Check if valid password is hashed_passwords file
     if check_hash(pass_input, hashed_input):
         print "Valid Key -- Unlocking Level..."
+        raw_input()
     else:
         print "Invalid Key -- Try Again...\n\n"
         main()
@@ -30,9 +31,16 @@ def write_hash(hash):
 
 # Check if hash is in file
 def check_hash(pass_input, hashed_input):
-    #if user_input in hashed_passwords
-    #   decrypt_files(pass_input, level)
-    #   return True
+    with open("Hashed_Passwords", "r") as file:
+        for line in file:
+            line = line.strip('\n')
+            info = line.split(":")
+            print "Level: " + info[0]
+            print "Hash: " + info[1]
+            if hashed_input == info[1]:
+                print "match found"
+                #decrypt_files(pass_input, info[0])
+                return True
     return False
 
 # Decrypt the files for the valid hash
