@@ -184,3 +184,7 @@ def keyPost():
 @app.route('/demo')
 def demo():
 	return app.send_static_file('keyDemo.txt')
+
+@app.route('/robots.txt')
+def robots():
+	return app.send_static_file('robots.txt')
