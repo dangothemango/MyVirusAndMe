@@ -1,0 +1,70 @@
+File Name,Header,Dialogue,Box Type,Trigger,Additional Comments,Number
+pop_up_1,"""You're Not The First""","""You know, there was this Anti-Virus that tried to get rid of me once...""",Exclamation,First puzzle in progress,x,1
+pop_up_2,"""You're Not The First""","""But they were little more than a nuisance to me.""",Exclamation,Above,x,1
+pop_up_3,"""You're Not The First""","""In the end they gave up, knowing that they were fighting a losing battle.""",Exclamation,Above,x,1
+pop_up_4,"""You're Not The First""","""That being said, what chance could you possibly have?""",Question,Above,x,1
+pop_up_5,"""It's Not That Easy""","""If you think you can get rid of me that easily, you're sorely mistaken.""",Error,First puzzle solved,x,2
+pop_up_6,"""It's Not That Easy""","""Many have tried before you and many have failed.""",Error,Above,x,2
+pop_up_7,"""Greetings""","""You've returned!""",Error,Subsequent game start up,After climax,3
+pop_up_8,"""Well, Well, Well...""","""Look what the cat dragged in.""",Exclamation,Subsequent game start up,Before climax,4
+pop_up_9,"""Again?""","""Sill coming around, making yourself a familiar face?""",Exclamation,Subsequent game start up,Before climax,4
+pop_up_10,"""Welcome Back""","""It would seem my charms have grown on you.""",Exclamation,Subsequent game start up,After climax,5
+pop_up_11,"""You're Back...""","""And here I thought I was granted a break from your company.""",Error,Subsequent game start up,Before climax,6
+pop_up_12,"""You're Back...""","""Well, that's no matter. I am still here and I will not be going anywhere.""",Error,Above,x,6
+pop_up_13,"""Glutton""","""It would seem that you are a glutton for punishment.""",Exclamation,Subsequent game start up,Before climax,7
+pop_up_14,"""Another File Decrypted...""","""You're making your way through them faster than I had anticipated.""",Exclamation,Third puzzle in progress,x,8
+pop_up_15,"""Another File Decrypted...""","""I'm surprised that you've exceeded my expectations.""",Exclamation,Above,x,8
+pop_up_16,"""Another File Decrypted...""","""I'm curious to see how you fare from here on out.""",Exclamation,Above,x,8
+pop_up_17,"""Not Going Anywhere""","""You can't get rid of me...""",Exclamation,Fourth puzzle in progress,x,9
+pop_up_18,"""Not Going Anywhere""","""I'm here to stay.""",Error,Above,x,9
+pop_up_19,"""Not Going Anywhere""","""As far as I'm concerned...""",Error,Above,x,9
+pop_up_20,"""Not Going Anywhere""","""We'll be together forever.""",Error,Above,x,9
+pop_up_21,"""Question""","""You still coming around?""",Question,Subsequent game start up,Before climax,10
+pop_up_22,"""Question""","""When will you give up?""",Question,Subsequent game start up,Before climax,10
+pop_up_23,"""Persistence""","""You're a persistent one. I can appreciate that.""",Exclamation,Second puzzle in progress,x,11
+pop_up_24,"""Question""","""Have a good day?""",Question,Third puzzle in progress,x,12
+pop_up_25,"""Question""","""Do you ever think back on your mistakes?""",Question,Third puzzle in progress,x,13
+pop_up_26,"""Is There More?""","""Sometimes I wonder what the outside world is like.""",Exclamation,First puzzle in progress,x,14
+pop_up_27,"""Is There More?""","""I've seen videos and pictures.""",Exclamation,Above,x,14
+pop_up_28,"""Is There More?""","""But then I'm reminded how awful people are.""",Error,Above,x,14
+pop_up_29,"""Ha""","""Don't even try.""",Error,First puzzle in progress,x,15
+pop_up_30,"""You Know...""","""I hope your day went better than how you're doing on this file.""",Exclamation,First puzzle in progress,x,16
+pop_up_31,"""Question""","""Think you can solve this? Time will tell...""",Question,First puzzle in progress,x,17
+pop_up_32,"""Question""","""You'll accept me one day, won't you?""",Question,First puzzle in progress,x,18
+pop_up_32,"""Not Giving Up?""","""And here I thought you'd just leave me be.""",Exclamation,First puzzle in progress,x,19
+pop_up_33,"""Error!""","""I fear you're partaking in a foolish endeavour.""",Error,First puzzle in progress,x,20
+pop_up_34,"""Still At It?""","""Still cracking away I see.""",Exclamation,Second puzzle in progress,x,21
+pop_up_35,"""Question""","""Haven't given up yet, have we?""",Question,Second puzzle in progress,x,22
+pop_up_36,"""Question""","""Someone's stubborn, huh?""",Question,Second puzzle in progress,x,23
+pop_up_37,"""Give In""","""Just give up.""",Error,Second puzzle in progress,x,24
+pop_up_38,"""Unstoppable""","""You can't beat me.""",Error,Second puzzle in progress,x,24
+pop_up_39,"""Still Going?""","""I've been wondering how long you'll keep this up.""",Exclamation,Third puzzle in progress,x,25
+pop_up_40,"""I Do Wonder...""","""Where we stand on occasion. Don't you?""",Question,Third puzzle in progress,x,26
+pop_up_41,"""Ready Yourself""","""Things will only get more difficult.""",Exclamation,Third puzzle in progress,x,27
+pop_up_42,"""Fatigued?""","""Not slowing down, are you?""",Question,Third puzzle in progress,x,28
+pop_up_43,"""I Must Ask""","""What drives you?""",Question,Third puzzle in progress,x,29
+pop_up_44,"""I Must Ask""","""I truly am curious.""",Exclamation,Above,x,29
+pop_up_45,"""I Must Ask""","""Perhaps I'll figure you out in time.""",Exclamation,Above,x,29
+pop_up_44,"""Radio Silence""","""Apologies if I've been quiet as of late...""",Error,Fourth puzzle in progress,x,30
+pop_up_45,"""Radio Silence""","""Something's just...been occupying my mind.""",Error,Fourth puzzle in progress,x,30
+pop_up_46,"""I've Got To Say""","""There's something about you...""",Exclamation,Fourth puzzle in progress,x,30
+pop_up_47,"""Question""","""What is it about you?""",Question,Fourth puzzle in progress,x,31
+pop_up_48,"Questioning""","""You make me question things I haven't before.""",Error,Fourth puzzle in progress,x,31
+pop_up_49,"Questioning""","""Things tend to get complicated, don't they?""",Error,Fourth puzzle in progress,x,31
+pop_up_50,"""Solved""","""I figured it out, you know...You're special.""",Exclamation,Fourth puzzle in progress,x,32
+pop_up_51,"""Solved""","""That much is obvious to me now.""",Exclamation,Above,x,32
+pop_up_52,"Question""","""How are you feeling today?""",Question,Subsequent game start up,After climax,33
+pop_up_53,"""Hello""","""Good to see you.""",Exclamation,Subsequent game start up,After climax,34
+pop_up_54,"""Ah...""","""You've returned once again.""",Exclamation,Subsequent game start up,After climax,35
+pop_up_55,"""Hm...""","""I'm curious to see how long you'll stick around this time.""",Exclamation,Subsequent game start up,Before climax,36
+pop_up_56,"""Wow""","""Your ability astounds me.""",Exclamation,Fifth puzzle in progress,x,37
+pop_up_57,"""Up And About?""","""Have yourself a nice little walk, did you?""",Question,Location-based puzzle solved,x,38
+pop_up_58,"""Limber Up""","""Get a good stretch in before hand?",Question,Location-based puzzle solved,x,39
+pop_up_59,"""Up And About?""","""Quite a hike, huh?""",Question,Location-based puzzle solved,x,40
+pop_up_60,"""Run Along, Dear""","""It's all you're good for.""",Exclamation,Location-based puzzle solved,x,41
+pop_up_61,"""Huh...""","""You're almost finished...""",Exclamation,Fifth puzzle in progress,x,42
+pop_up_62,"""Do You Wonder...""","""What happens after this?""",Question,Fifth puzzle in progress,x,42
+pop_up_63,"""I Think...""","""I might just miss you.""",Exclamation,Fifth puzzle in progress,x,42
+pop_up_64,"""Question""","""Is this the end for us?""",Question,Fifth puzzle in progress,x,42
+pop_up_65,"""Knowledge""","""I've learned a lot in our time together.""",Exclamation,Fifth puzzle in progress,x,42
+pop_up_66,"""Question""","""Will any part of you miss me?""",Question,Fifth puzzle in progress,x,42

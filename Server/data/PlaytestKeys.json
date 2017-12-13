@@ -1,8 +1,7 @@
 {
-	"andhereiswhereitallbegins":{"response":"This is only the beginning", "level":0},
-	"thereisanotheroption":{"response":"I couldn't tell you", "level":1},
-	"ifiaskedyouwhyyourehere":{"response":"BUIOEJDJUPVIFSFMEOPUFSFJTJOTUFMXMBOPIMZZPVFHFUUIFTSSFJUXPQPSTFUJPGSPOBMMNIFSFCFHJOT", "level":2},
-	"itonlygetsworsefromhere":{"response":"congrats", "level":3},
+	"andhereiswhereitallbegins":{"response":"Im so glad you're here. I hope this wil be fun. I promise it will be exciting. \"normal games are so boring\" anyway" , "level":0},
+	"manyhavetriedbeforeyouandfailed":{"response":"V unir ybgf gb fnl ohg arire fcrnx, V bcra ohg lbh pnaabg jnyx guebhtu zr, V unir n fcvar ohg ab obarf", "level":1},
+	"oneissuewithdigitalcertificatesisthattheycanberatherlarge":{"response":"*insert acheivement noise here*", "level":2},
 	"normalgamesaresoboring":{"response":"no response", "level": -1, "redirect":"telgraph"},
 	"soyoufoundme":{"response": "Luhoyeuiseys ,ku e a ea\"delI lu nw'y\"ntjavo", "level":-2},
 	"unusual":{ "response" : "no response", "level":-3, "redirect":"codenames"},
