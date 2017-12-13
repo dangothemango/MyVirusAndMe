@@ -19,10 +19,16 @@ for line in listOfStuff:
 for piece in pieces:
 	subPieces = pieces[piece]
 	output =''
+	trigger=''
+	subTrigger = ''
 	for subPiece in subPieces:
+		if trigger == '':
+			trigger = subPiece[4].replace(' ','')
+		if subTrigger=='':
+			subTrigger=subPiece[5].replace(' ','')
 		output+='result = MsgBox("'+ subPiece[2].strip('"') +'", vbOk+vbExclamation, "'+ subPiece[1].strip('"') +'")\n\n'
 
-	filename = './popups/' + subPiece[4].replace(' ','') + (('/'+subPiece[5].replace(' ','')) if subPiece[5]!='x' else '') + '/' +str(piece)+'.vbs'
+	filename = './popups/' + trigger + (('/'+subTrigger) if subTrigger!='x' else '') + '/' +str(piece)+'.vbs'
 	os.makedirs(os.path.dirname(filename), exist_ok=True)
 	with open(filename, 'w+') as f:
 		f.write(output)
