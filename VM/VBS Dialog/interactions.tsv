@@ -1,0 +1,68 @@
+File Name	Type	Header	Dialogue	Box Type	Trigger	Additional Comments	Trigger	Reciever	Number
+virus_starter_1	s	"Tick-Tock"	"How's that puzzle coming along?"	Info	Second puzzle in progress	x	1	0	1
+virus_starter_1_1	s	"Tick-Tock"	"Having some difficulties?"	Info	Above	x	1	0	1
+player_response_1	p	N/A	"Don't worry about it."	Info	Above	x	2	1	1
+virus_response_1	v	"Keep At It..."	"Or don't. Either way, doesn't bother me."	Info	Above	x		2	1
+virus_starter_2	s	"Keep Trying"	"You're really determined to get rid of me, aren't you?"	Info	Second puzzle solved	x	1	0	2
+virus_starter_2_1	s	"Keep Trying"	"I'd be more offended if I thought it were possible..."	Info	Above	x	1	0	2
+virus_starter_2_2	s	"Keep Trying"	"But it's not..."	Info	Above	x	1	0	2
+virus_starter_2_3	s	"Keep Trying"	"Even if you make progress, I'm not going anywhere."	Info	Above	x	1	0	2
+player_response_2	p	N/A	"I don't give up that easily."	Info	Above	x	2	1	2
+virus_response_2	v	"Keep Trying"	"Good, because neither do I..."	Info	Above	x		2	2
+virus_response_2_1	v	"Keep Trying"	"You know, I like a person whose tenacious."	Info	Above	x		2	2
+virus_response_2_2	v	"Keep Trying"	"We're going to have some fun, aren't we?"	Info	Above	x		2	2
+virus_starter_3	s	"Impressed"	"To your credit, I didn't think you'd make it this far."	Info	Third puzzle started	x	1	0	3
+player_response_3	p	N/A	"Don't underestimate me."	Info	virus_starter_3	Player chooses response	2	1	3
+player_response_4	p	N/A	"I'm more capable than you think."	Info	virus_starter_3	Player chooses response	2	1	3
+virus_response_3	v	"Impressed"	"It would seem so. Color me impressed, for now..."	Info	player_response_3 or 4	x	3	2	3
+player_response_5	p	N/A	"You really like to hear yourself talk, don't you?"	Info	Above	x	4	3	3
+virus_response_4	v	"All The World's A Stage"	"I'll be honest, I really do..."	Info	Above	x	5	4	3
+virus_response_4_1	v	"All The World's A Stage"	"It's been a long time since I've had a captive audience at my disposal."	Info	Above	x	5	4	3
+virus_response_4_2	v	"All The World's A Stage"	"So why wouldn't I take advantage of an opportunity when it presents itself?"	Info	Above	x	5	4	3
+player_response_6	p	N/A	"It's annoying."	Info	virus_response_4_2	Player chooses response	6	5	3
+player_response_7	p	N/A	"Fair enough."	Info	virus_response_4_2	Player chooses response	7	5	3
+virus_response_5	v	"All The World's A Stage"	"If you find it so annoying, why bother asking me more questions?"	Info	player_response_6	x		6	3
+virus_response_5_1	v	"All The World's A Stage"	"You're merely indulging me by giving me a platform to speak."	Info	Above	x		6	3
+virus_response_6	v	"All The World's A Stage"	"I'm glad we're on the same page then."	Info	player_response_7	x		7	3
+virus_response_6_1	v	"All The World's A Stage"	"You'll find that we're more alike than you first anticipated."	Info	Above	x		7	3
+virus_starter_4	s	"Who Are You Exactly?"	"It would seem you're really going to try and get rid of me."	Info	First puzzle started	x	1	0	4
+virus_starter_4_1	s	"Who Are You Exactly?"	"In that case, tell me something about yourself."	Info	Above	x	1	0	4
+virus_starter_4_2	s	"Who Are You Exactly?"	"We might as well get to know each other since I won't be going anywhere."	Info	Above	x	1	0	4
+player_response_8	p	N/A	"I'm not here to get along."	Info	Above	x	2	1	4
+virus_response_7	v	"Now, Now..."	"No need to be so hostile. I had assumed that was my job."	Info	Above	x	3	2	4
+virus_response_7_1	v	"Now, Now..."	"You'd be wise to try and get on my good side."	Info	Above	x	3	2	4
+virus_response_7_2	v	"Now, Now..."	"I can cause...issues for you that you wouldn't been to keen on."	Info	Above	x	3	2	4
+player_response_9	p	N/A	"We aren't friends."	Info	Above	x	4	3	4
+virus_response_8	v	"Don't You Worry..."	"I wouldn't go so far as to make such an assumption."	Info	Above	x		4	4
+virus_starter_5	s	"So..."	"I've done some research while you were away."	Info	First puzzle in progress	x	1	0	5
+player_response_10	p	N/A	"And..."	Info	Above	x	2	1	5
+virus_response_9	v	"An Interesting Find"	"Humans have this notion that something from technology can't have emotions."	Info	Above	x	3	2	5
+player_response_11	p	N/A	"Your point?"	Info	Above	x	4	3	5
+virus_response_10	v	"Trust Me..."	"You are sorely mistaken."	Info	Above	x		4	5
+virus_starter_6	s	"I Must Ask..."	"Have you ever considered that you aren't as intelligent as you think?"	Info	First puzzle solved	x	1	0	6
+player_response_12	p	N/A	"Projecting?"	Info	virus_starter_6	Player chooses response	2	1	6
+player_response_13	p	N/A	"Why?"	Info	virus_starter_6	Player chooses response	2	1	6
+virus_response_11	v	"..."	"Nevermind."	Info	player_response_12 or 13	x		2	6
+virus_starter_7	s	"At It Again?"	"Ever determined are you?"	Info	Third puzzle in progress	x	1	0	7
+player_response_14	p	N/A	"That's me."	Info	Above	x	2	1	7
+virus_response_12	v	"Intriguing"	"Yes, it would seem so..."	Info	Above	x	3	2	7
+player_response_15	p	N/A	"Really?"	Info	Above	x	4	3	7
+virus_response_13	v	"How You Say..."	"Hats off to you, for your effort."	Info	Above	x		4	7
+virus_starter_8	s	"You Know..."	"I will say, you've grown on me."	Info	Fourth puzzle started	x	1	0	8
+player_response_16	p	N/A	"That so?"	Info	Above	x	2	1	8
+virus_response_14	v	"Indeed..."	"You are...something else."	Info	Above	x		2	8
+virus_response_15	v	"Indeed..."	"I haven't quite figured it out."	Info	Above	x		2	8
+virus_starter_9	s	"On Occasion..."	"Your intelligence amazes me."	Info	Fourth puzzle solved	x	1	0	9
+player_response_17	p	N/A	"Having a change of heart?"	Info	Above	x	2	1	9
+virus_response_16	v	"On Occasion..."	"Let's just say that there is more for me to think upon."	Info	Above	x		2	9
+virus_starter_10	s	"Nearing The End"	"Here we are. Never thought we'd reach this point."	Info	Fifth puzzle started	x	1	0	10
+virus_starter_10_1	s	"Nearing The End"	"But maybe not for the same reasons as before."	Info	Above	x	1	0	10
+virus_starter_10_2	s	"Nearing The End"	"You've proved your...ability."	Info	Above	x	1	0	10
+player_response_18	p	N/A	"I have?"	Info	Above	x	2	1	10
+virus_response_17	v	"Something About You"	"I'd even say we're starting to really get on."	Info	Above	x	3	2	10
+player_response_19	p	N/A	"I'm flattered."	Info	Above	x	4	3	10
+virus_response_18	v	"Something About You"	"I'm glad."	Info	Above	x	5	4	10
+virus_response_19	v	"Something About You"	"You've given me a lot to reflect upon."	Info	Above	x	5	4	10
+player_response_20	p	N/A	"Is that so?"	Info	Above	x	6	5	10
+virus_response_20	v	"Well..."	"I'd hate to have to go so soon..."	Info	Above	x		6	10
+virus_response_21	v	"Well..."	"I wonder if you'll miss me?"	Info	Above	x		6	10
